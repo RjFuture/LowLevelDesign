@@ -19,7 +19,7 @@ public class Board {
             this.cells.add(new ArrayList<>());
             for(int j =0;j<size;j++)
             {
-               this.cells.get(i).get(j).setCellstate(CellState.EMPTY);
+               this.cells.get(i).add(new Cell(i,j));
             }
         }
     }
