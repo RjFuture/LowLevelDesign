@@ -1,10 +1,15 @@
 package Modals;
 
+import Exceptions.BotExceedsCapacity;
+import Exceptions.InvalidPlayerCountException;
+import Exceptions.PlayerSymbolNotUnique;
 import Modals.enums.CellState;
 import Modals.enums.GameState;
+import Modals.enums.PlayerType;
 import Startegy.WinningStartegy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Game {
@@ -125,5 +130,93 @@ public class Game {
 
     public void setWinnerStartegy(List<WinningStartegy> winnerStartegy) {
         this.winnerStrategies = winnerStartegy;
+    }
+
+    public static Builder getBuilder()
+    {
+        return new Builder();
+    }
+
+    public static class Builder
+    {
+        int size;
+        List<Player> players;
+        List<WinningStartegy> winningStartegies;
+
+        public int getSize()
+        {
+            return  size;
+        }
+
+        public List<Player> getPlayers() {
+            return players;
+        }
+
+        public Builder setPlayers(List<Player> players) {
+            this.players = players;
+            return this;
+        }
+
+        public Builder setSize(int size) {
+            this.size = size;
+            return this;
+        }
+
+        public List<WinningStartegy> getWinningStartegies() {
+            return winningStartegies;
+        }
+
+        public Builder setWinningStartegies(List<WinningStartegy> winningStartegies) {
+            this.winningStartegies = winningStartegies;
+            return this;
+        }
+
+        public Game build()
+        {
+            //validate players is less than or equal too size-1
+            validatePlayerNumber();
+          //maximum bot can be 1
+            validateBotCount();
+            // Symbol should be unique for each player
+            validateAllplayer();
+
+            return new Game(size,players,winningStartegies);
+        }
+
+        private void validatePlayerNumber()
+        {
+            if(this.players.size()>=this.size)
+            {
+                throw new InvalidPlayerCountException("Number of players should be less than "+this.size);
+            }
+        }
+
+        private void validateBotCount()
+        {
+            int cnt =0;
+            for(Player player: players)
+            {
+                if(player.getPlayerType().equals(PlayerType.BOT)) cnt++;
+            }
+            if(cnt>1)
+            {
+                throw  new BotExceedsCapacity("Bots can be used maximum of 1 ");
+            }
+        }
+
+        private void validateAllplayer()
+        {
+            HashSet<Symbol> hashSet = new HashSet<>();
+            for(Player player:players)
+            {
+                hashSet.add(player.getSymbol());
+            }
+            if(hashSet.size()!=players.size())
+            {
+                throw  new PlayerSymbolNotUnique("Players Symbols are not unique ,please use unique symbol for each player");
+            }
+        }
+
+
     }
 }

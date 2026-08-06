@@ -11,7 +11,7 @@ public class GameController {
 
     public Game startGame(int size, List<Player> players , List<WinningStartegy> winnerStartegy)
     {
-        return new Game(size,players,winnerStartegy);
+        return Game.getBuilder().setSize(size).setPlayers(players).setWinningStartegies(winnerStartegy).build();
     }
 
     public void display(Game game)
