@@ -23,7 +23,7 @@ public class Cell {
         }
         else
         {
-            System.out.print("| " + player.getSymbol().getName()+" |" );
+            System.out.print("|" + this.player.getSymbol().getName()+"|" );
         }
     }
 
