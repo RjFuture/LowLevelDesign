@@ -12,6 +12,11 @@ public class ColumnWinningStrategy implements WinningStartegy{
     public ColumnWinningStrategy(int size) {
         this.size = size;
         this.colMaps = new HashMap[size];
+
+        for(int i=0;i<size;i++)
+        {
+            colMaps[i] = new HashMap<>();
+        }
     }
 
     @Override

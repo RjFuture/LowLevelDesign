@@ -13,6 +13,10 @@ public class DiagonalWinnigStartegy implements WinningStartegy{
     public DiagonalWinnigStartegy(int size) {
         this.size = size;
         this.diaMaps = new HashMap[2]; // like only 2 diagonal and reverse diagonal
+        for(int i=0;i<2;i++)
+        {
+            diaMaps[i] = new HashMap<>();
+        }
     }
 
     //2 types of diagonal

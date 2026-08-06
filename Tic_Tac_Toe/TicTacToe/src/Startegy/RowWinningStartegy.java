@@ -13,6 +13,10 @@ public class RowWinningStartegy implements WinningStartegy{
     public RowWinningStartegy(int size) {
         this.size = size;
         this.rowMaps = new HashMap[size];
+        for(int i=0;i<size;i++)
+        {
+            rowMaps[i] = new HashMap<>();
+        }
     }
 
     @Override
