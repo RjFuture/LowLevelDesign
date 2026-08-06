@@ -24,4 +24,9 @@ public class GameController {
         return game.getGameState();
     }
 
+    public void makeMove(Game game)
+    {
+         game.makeMove(game);
+    }
+
 }

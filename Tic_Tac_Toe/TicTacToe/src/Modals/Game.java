@@ -1,8 +1,10 @@
 package Modals;
 
+import Modals.enums.CellState;
 import Modals.enums.GameState;
 import Startegy.WinningStartegy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -13,14 +15,60 @@ public class Game {
     private int nextTurn;
     private Player winner;
     private GameState gameState;
-    private List<WinningStartegy> winnerStartegy;
+    private List<WinningStartegy> winnerStrategies;
 
-    public Game(int size,List<Player> players,List<WinningStartegy> winnerStartegy)
+    public Game(int size,List<Player> players,List<WinningStartegy> winnerStrategies)
     {
         this.board = new Board(size); // Strong has a Composition
         this.players = players; //Weak Composition
-        this.winnerStartegy = winnerStartegy;
+        this.winnerStrategies = winnerStrategies;
         gameState = GameState.INPROGRESS;
+        this.nextTurn =0;
+        this.moves = new ArrayList<>();
+    }
+
+    public void makeMove(Game game)
+    {
+        // player's turn
+        Player player = players.get(this.getNextTurn());
+        System.out.println("It's "+player.getName()+" turn");
+
+        //fill the cell when make move
+        Move move = player.makeMove(this);
+
+        // next turn update
+        this.setNextTurn((this.nextTurn+1) % players.size());
+
+        moves.add(move);
+
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+        Cell currCell = board.getCells().get(row).get(col);
+        currCell.setCellstate(CellState.FILLED);
+        currCell.setPlayer(player);
+
+        // checking if winner or not
+
+        if(checkingWinner(move))
+        {
+            this.setWinner(player);
+            this.setGameState(GameState.COMPLETED);
+
+        }
+        else if(moves.size()== this.getBoard().getSize() * this.getBoard().getSize())
+        {
+            this.setGameState(GameState.DRAW);
+        }
+
+    }
+
+    private boolean checkingWinner(Move move)
+    {
+        for(WinningStartegy winnerStrategy : winnerStrategies )
+        {
+            if(winnerStrategy.checkWinner(move)) return true;
+        }
+        return false;
     }
 
     public Board getBoard() {
@@ -72,10 +120,10 @@ public class Game {
     }
 
     public List<WinningStartegy> getWinnerStartegy() {
-        return winnerStartegy;
+        return winnerStrategies;
     }
 
     public void setWinnerStartegy(List<WinningStartegy> winnerStartegy) {
-        this.winnerStartegy = winnerStartegy;
+        this.winnerStrategies = winnerStartegy;
     }
 }
