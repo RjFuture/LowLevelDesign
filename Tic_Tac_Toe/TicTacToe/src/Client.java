@@ -19,7 +19,8 @@ public class Client {
         int size = 3;
         List<Player> players = new ArrayList<>();
         players.add(new Human(1,"Rajnish",new Symbol("X","X"),25));
-        players.add(new Human(2,"Lokesh",new Symbol("O","O"),24));
+        players.add(new Human(2,"Lokesh",new Symbol("X","X"),24));
+//        players.add(new Human(3,"Bimla",new Symbol("B","B"),34));
 
         List<WinningStartegy> winningStartegies = new ArrayList<>();
         winningStartegies.add(new RowWinningStartegy(size));
