@@ -1,8 +1,6 @@
 import Controllers.GameController;
-import Modals.Game;
-import Modals.Human;
-import Modals.Player;
-import Modals.Symbol;
+import Modals.*;
+import Modals.enums.BotDifficulty;
 import Modals.enums.GameState;
 import Startegy.ColumnWinningStrategy;
 import Startegy.DiagonalWinnigStartegy;
@@ -19,8 +17,9 @@ public class Client {
         int size = 3;
         List<Player> players = new ArrayList<>();
         players.add(new Human(1,"Rajnish",new Symbol("X","X"),25));
-        players.add(new Human(2,"Lokesh",new Symbol("X","X"),24));
+//        players.add(new Human(2,"Lokesh",new Symbol("O","O"),24));
 //        players.add(new Human(3,"Bimla",new Symbol("B","B"),34));
+        players.add(new Bot(5,"Rob",new Symbol("O","O"), BotDifficulty.EASY));
 
         List<WinningStartegy> winningStartegies = new ArrayList<>();
         winningStartegies.add(new RowWinningStartegy(size));
@@ -44,6 +43,8 @@ public class Client {
             //check winner
             // if winner comes then update Gamestate = completed
         }
+
+        gameController.display(game);
 
         if(gameController.getGameState(game).equals(GameState.DRAW))
         {
