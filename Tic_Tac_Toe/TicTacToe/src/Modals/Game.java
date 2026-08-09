@@ -142,6 +142,12 @@ public class Game {
         int latest_idx = moves.size()-1;
         if(latest_idx<0) return;
         Move latest_move = moves.get(latest_idx);
+
+        // NEW: tell every winning strategy to reverse what this move did to its counters
+        for (WinningStartegy strategy : winnerStrategies) {
+            strategy.undoMove(latest_move);
+        }
+
         Cell latest_cell = latest_move.getCell();
         latest_cell.setCellstate(CellState.EMPTY);
         latest_cell.setPlayer(null);

@@ -46,4 +46,21 @@ public class RowWinningStartegy implements WinningStartegy{
 
 
     }
+
+    @Override
+    public void undoMove(Move move) {
+
+        Player curplayer = move.getPlayer();
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+
+        HashMap<String, Integer> currRowmaps = rowMaps[row];
+
+        String currSymbol = curplayer.getSymbol().getName();
+
+        if (currRowmaps.containsKey(currSymbol)) {
+            currRowmaps.put(currSymbol, currRowmaps.get(currSymbol) - 1);
+
+        }
+    }
 }

@@ -62,4 +62,24 @@ public class DiagonalWinnigStartegy implements WinningStartegy{
         return (flag1 || flag2);
 
     }
+
+    @Override
+    public void undoMove(Move move) {
+        Player curplayer = move.getPlayer();
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+
+        HashMap<String, Integer> currdiaNormal = diaMaps[0];
+        HashMap<String, Integer> currdiareverse = diaMaps[1];
+
+        String currSymbol = curplayer.getSymbol().getName();
+
+        if (currdiaNormal.containsKey(currSymbol)) {
+            currdiaNormal.put(currSymbol, currdiaNormal.get(currSymbol) - 1);
+
+        }
+        if (currdiareverse.containsKey(currSymbol)) {
+            currdiareverse.put(currSymbol, currdiareverse.get(currSymbol) - 1);
+        }
+    }
 }

@@ -14,3 +14,7 @@ and also make that player in that cell as null , and in the end also nextplayer-
 //that's all needed
 // used Design Pattern :- Factory pattern , Strartegy pattern , Using Builder pattern like to start the game
 //facade design pattern is used in someplace we are doing abstraction too
+
+//Bug found
+
+1.) when we do undo , then we have to decrease count for winning startegy hashmap

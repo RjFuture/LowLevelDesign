@@ -36,4 +36,22 @@ public class ColumnWinningStrategy implements WinningStartegy{
 
         return currColMap.get(currSymbol)==size;
     }
+
+    @Override
+    public void undoMove(Move move) {
+
+        Player curplayer = move.getPlayer();
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+
+        HashMap<String, Integer> currColMaps = colMaps[col];
+
+        String currSymbol = curplayer.getSymbol().getName();
+
+        if (currColMaps.containsKey(currSymbol)) {
+            currColMaps.put(currSymbol, currColMaps.get(currSymbol) - 1);
+
+        }
+
+    }
 }
