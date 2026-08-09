@@ -9,6 +9,7 @@ import Startegy.WinningStartegy;
 import setup.GameSetup;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,6 +22,9 @@ public class Client {
 
         int size = sc.nextInt();
         List<Player> players = GameSetup.collectPlayer();
+// shuufling the player too randomize their turn , anyone can have first turn
+        Collections.shuffle(players);
+
 //        players.add(new Human(1,"Rajnish",new Symbol("X","X"),25));
 //        players.add(new Human(2,"Lokesh",new Symbol("O","O"),24));
 //        players.add(new Human(3,"Bimla",new Symbol("B","B"),34));
