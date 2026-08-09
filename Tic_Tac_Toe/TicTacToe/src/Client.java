@@ -21,6 +21,7 @@ public class Client {
         System.out.println("what size of board you want ?");
 
         int size = sc.nextInt();
+        sc.nextLine();
         List<Player> players = GameSetup.collectPlayer();
 // shuufling the player too randomize their turn , anyone can have first turn
         Collections.shuffle(players);
@@ -48,10 +49,23 @@ public class Client {
         {
             //input from players
             gameController.display(game);
+
+            //in ongoing game we can undo if we want to adding global undo
+            System.out.println("Want to undo this or move ?");
+            String input = sc.nextLine();
+            if(input.equalsIgnoreCase("UNDO"))
+            {
+                gameController.undo(game);
+                continue; // skip makeMove this iteration, re-loop and re-display
+            }
+
             // make moves
             gameController.makeMove(game);
             //check winner
             // if winner comes then update Gamestate = completed
+
+
+
         }
 
         gameController.display(game);

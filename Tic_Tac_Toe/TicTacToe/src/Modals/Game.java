@@ -137,6 +137,25 @@ public class Game {
         return new Builder();
     }
 
+    public void undo() {
+
+        int latest_idx = moves.size()-1;
+        if(latest_idx<0) return;
+        Move latest_move = moves.get(latest_idx);
+        Cell latest_cell = latest_move.getCell();
+        latest_cell.setCellstate(CellState.EMPTY);
+        latest_cell.setPlayer(null);
+        moves.remove(latest_idx);
+        if(moves.size()==0) //means that was first move now we did undo too
+        {
+            this.nextTurn =0;
+            return;
+        }
+
+        this.nextTurn = (nextTurn-1<0)?players.size()-1:(nextTurn-1);
+
+    }
+
     public static class Builder
     {
         int size;

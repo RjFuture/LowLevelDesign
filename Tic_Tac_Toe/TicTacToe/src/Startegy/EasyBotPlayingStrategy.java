@@ -19,7 +19,8 @@ public class EasyBotPlayingStrategy implements BotPlayingStrategy{
             {
                 if(board.getCells().get(row).get(col).getCellstate().equals(CellState.EMPTY))
                 {
-                    return new Move(null,new Cell(row,col));
+                    Cell actualcell =  board.getCells().get(row).get(col);
+                    return new Move(null,actualcell);
                 }
             }
         }

@@ -29,8 +29,9 @@ public class Human extends Player{
            row = sc.nextInt();
            col = sc.nextInt();
        }
+       Cell actualcell = game.getBoard().getCells().get(row).get(col);
 
-       return  new Move(this, new Cell(row,col));
+       return  new Move(this, actualcell);
     }
 
     private boolean validateMove(int row, int col,Game game) {
