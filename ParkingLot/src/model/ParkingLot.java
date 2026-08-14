@@ -15,4 +15,37 @@ public class ParkingLot extends BaseEntity {
 
     // 1.) pricing strategy
     // 2.) Allocation strategy
+
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<ParkingFloor> getFloors() {
+        return floors;
+    }
+
+    public void setFloors(List<ParkingFloor> floors) {
+        this.floors = floors;
+    }
+
+    public List<Gate> getGates() {
+        return gates;
+    }
+
+    public void setGates(List<Gate> gates) {
+        this.gates = gates;
+    }
+
+    public ParkingStatus getParkingStatus() {
+        return parkingStatus;
+    }
+
+    public void setParkingStatus(ParkingStatus parkingStatus) {
+        this.parkingStatus = parkingStatus;
+    }
 }

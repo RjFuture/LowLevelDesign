@@ -8,5 +8,45 @@ public class Token extends BaseEntity{
     private Date entryTime;
     private Vehicle vehicle;
     private Gate gate;
-    private ParkingSlot slot;
+    private ParkingSlot assignedSlot;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Date getEntryTime() {
+        return entryTime;
+    }
+
+    public void setEntryTime(Date entryTime) {
+        this.entryTime = entryTime;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Gate getGate() {
+        return gate;
+    }
+
+    public void setGate(Gate gate) {
+        this.gate = gate;
+    }
+
+    public ParkingSlot getAssignedSlot() {
+        return assignedSlot;
+    }
+
+    public void setAssignedSlot(ParkingSlot assignedSlot) {
+        this.assignedSlot = assignedSlot;
+    }
 }
