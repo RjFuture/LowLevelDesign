@@ -4,18 +4,18 @@ import java.util.Date;
 
 public class Token extends BaseEntity{
 
-    private String token;
+    private String tokenNo;
     private Date entryTime;
     private Vehicle vehicle;
     private Gate gate;
     private ParkingSlot assignedSlot;
 
     public String getToken() {
-        return token;
+        return tokenNo;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setToken(String tokenNo) {
+        this.tokenNo = tokenNo;
     }
 
     public Date getEntryTime() {
